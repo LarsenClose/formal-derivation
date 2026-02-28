@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+title: "Formal Derivation: Lean 4 Verification of Phase-Indexed Epistemology"
+message: "If you use this formalization, please cite the paper."
+type: software
+authors:
+  - given-names: Larsen James
+    family-names: Close
+    orcid: "https://orcid.org/0009-0001-6422-2498"
+repository-code: "https://github.com/LarsenClose/formal-derivation"
+license: CC-BY-4.0
+preferred-citation:
+  type: article
+  authors:
+    - given-names: Larsen James
+      family-names: Close
+  title: "Phase-Indexed Epistemology"
+  year: 2026
+  doi: "10.5281/zenodo.18812866"
+  url: "https://zenodo.org/records/18812866"

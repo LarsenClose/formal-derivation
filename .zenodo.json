@@ -1,0 +1,28 @@
+{
+  "title": "Formal Derivation: Lean 4 Verification of Phase-Indexed Epistemology",
+  "description": "Lean 4 formalization of the derivation chain from Phase-Indexed Epistemology (Close, 2026). 208 theorems, 67 axioms, zero sorry.",
+  "creators": [
+    {
+      "name": "Close, Larsen James",
+      "orcid": "0009-0001-6422-2498"
+    }
+  ],
+  "license": {
+    "id": "CC-BY-4.0"
+  },
+  "related_identifiers": [
+    {
+      "identifier": "10.5281/zenodo.18812866",
+      "relation": "isSupplementTo",
+      "scheme": "doi"
+    }
+  ],
+  "keywords": [
+    "formal verification",
+    "Lean 4",
+    "Mathlib",
+    "epistemology",
+    "derivation chain"
+  ],
+  "upload_type": "software"
+}
