@@ -1,5 +1,7 @@
 # formal-derivation
 
+[![CI](https://github.com/LarsenClose/formal-derivation/actions/workflows/ci.yml/badge.svg)](https://github.com/LarsenClose/formal-derivation/actions/workflows/ci.yml)
+
 Lean 4 formalization of the derivation chain from *Phase-Indexed Epistemology* (Close, 2026).
 
 **Lean 4.28.0 / Mathlib v4.28.0 -- zero sorry -- 67 axioms (documented) -- 208 theorems**
