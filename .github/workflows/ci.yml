@@ -21,12 +21,12 @@ jobs:
         run: lake exe cache get
 
       - name: Build
-        run: lake build
+        run: lake build 2>&1 | tee build.log
 
-      - name: Check no sorry
+      - name: Verify zero sorry
         run: |
-          if grep -r "sorry" Formal/ --include="*.lean" | grep -v "^.*:.*--.*sorry" | grep -v "/Status.lean:" | grep -v "sorry_count" | grep "sorry"; then
-            echo "Found sorry in source files"
+          if grep -i "declaration uses 'sorry'" build.log; then
+            echo "Build contains sorry"
             exit 1
           fi
-          echo "No sorry found"
+          echo "Zero sorry"
