@@ -1,6 +1,6 @@
 # Axiom Inventory
 
-Complete accounting of all 76 axioms in the formalization. Every `axiom` declaration encodes either genuinely philosophical content (no Mathlib correlate possible) or established mathematics absent from Mathlib. No axiom papers over a gap in the derivation's own reasoning.
+Complete accounting of all 124 axioms in the formalization. Every `axiom` declaration encodes either genuinely philosophical content (no Mathlib correlate possible), established mathematics absent from Mathlib, empirical bridge conditions, or standard computational assumptions. No axiom papers over a gap in the derivation's own reasoning.
 
 ---
 
@@ -121,6 +121,57 @@ implication from evidence to ground state status is axiomatized.
 
 ---
 
+## Software Stack — Computational Boundary (8)
+
+Axioms connecting the derivation chain to the software stack that hosts
+and verifies it. Three categories: cryptographic hardness assumptions
+(standard conjectures), kernel enforcement (hardware-backed guarantees),
+and computational structure (Turing completeness, distinguishability).
+
+### Cryptographic Hardness (3 -- ComputationalBoundary.lean)
+
+| Axiom | Content |
+|-------|---------|
+| `sha256_preimage_resistant` | SHA-256 preimage resistance (security parameter ≥ 128) |
+| `aes256_indistinguishable` | AES-256-GCM ciphertext indistinguishability (security parameter ≥ 256) |
+| `ed25519_unforgeable` | Ed25519 existential unforgeability under CMA (security parameter ≥ 128) |
+
+Standard cryptographic assumptions. These cannot be proved — they are
+computational conjectures validated by decades of cryptanalysis. They ground
+the project's reliance on git (SHA-256), TLS (AES-256-GCM), and SSH (Ed25519).
+
+### Open Source / Intensional Access (1 -- ComputationalBoundary.lean)
+
+| Axiom | Content |
+|-------|---------|
+| `open_source_provides_intensional_access` | Source availability enables structural examination |
+
+Source code availability provides intensional access that circumvents
+Rice's extensional limits for the specific codebase examined.
+
+### Kernel Enforcement (2 -- KernelCapability.lean)
+
+| Axiom | Content |
+|-------|---------|
+| `kernel_enforces_isolation` | Distinct process domains are isolated by hardware-enforced memory protection |
+| `syscall_only_crossing` | Syscalls are the only mechanism for crossing layer boundaries |
+
+Hardware + kernel together provide isolation guarantees (analogous to
+ground-state Axiom A3 Opacity). These cannot be derived from type theory.
+
+### Computational Structure (2 -- StackDerivation.lean)
+
+| Axiom | Content |
+|-------|---------|
+| `lean_is_turing_complete` | Lean 4 instantiates Step 5 (universal computation) |
+| `distinguishability_monotone` | Distinguishability decreases with layer distance |
+
+Lean 4 being Turing-complete connects the abstract derivation to the concrete
+system that verifies it. Distinguishability monotonicity is the stack-level
+analogue of compression loss monotonicity from Depth.lean.
+
+---
+
 ## Proved Without Custom Axioms
 
 For completeness, major results that use only Mathlib:
@@ -143,3 +194,6 @@ For completeness, major results that use only Mathlib:
 - All `IntensionalShift.lean` theorems: `differential_positive`, `threshold_has_surplus`, `hd_shift_is_mdl_instance`
 - All `SelfExtracting.lean` theorems: `loop_stable_under_iteration`, `artifact_joint_fixed_point`
 - All `Reception.lean` theorems: `presentational_priority`, `reception_witnesses_thereis`, `framework_posterior`, `bilateral_fold_preserves_announcement`
+- All `ComputationalBoundary.lean` structural theorems: `security_parameter_positive`, `crypto_creates_depth_boundary`, `semantic_property_has_distinct_witnesses`, `project_crypto_at_least_128`
+- All `KernelCapability.lean` hierarchy theorems: `layer_depth_injective`, `hardware_most_privileged`, `user_least_privileged`, `layer_total_order`, `all_layers_bounded`
+- All `StackDerivation.lean` composition theorems: `self_hosting_closure`, `derivation_self_hosts`, `full_chain_ordered`, `project_crypto_complete`, `stack_witness_exists`

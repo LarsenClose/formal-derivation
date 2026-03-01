@@ -4,7 +4,7 @@
 
 Lean 4 formalization of the derivation chain from *Phase-Indexed Epistemology* (Close, 2026).
 
-**Lean 4.28.0 / Mathlib v4.28.0 -- zero sorry -- 67 axioms (documented) -- 208 theorems**
+**Lean 4.28.0 / Mathlib v4.28.0 -- zero sorry -- 124 axioms (documented) -- 354 theorems**
 
 Paper: [Phase-Indexed Epistemology](https://zenodo.org/records/18812866) (DOI: 10.5281/zenodo.18812866)
 
@@ -76,6 +76,24 @@ Formal/
     Chomsky.lean                         -- Chomsky Type 0 argument, Kleene connection
     ChomskyMathlib.lean                  -- Chomsky hierarchy as linear order
     SelfApplication.lean                 -- derivation_certifies_itself
+    Resonance.lean                       -- coherent surplus, efflux propagation
+    IntensionalShift.lean                -- MDL compression, extensional-to-intensional shift
+    SelfExtracting.lean                  -- bilateral duality, Kleene loop, geometric invariance
+    Reception.lean                       -- aperture, announcement, diamond-point reception
+
+  Network/                               -- Empirical Bridge
+    NetworkWitness.lean                  -- network-to-ground-state witness (7 evidence conditions)
+    NetworkResonance.lean                -- structural resonance between network instances
+
+  RF/                                    -- Radio-Frequency Derivation from S^2
+    Maxwell.lean                         -- Maxwell equations, wave propagation
+    AntennaTheory.lean                   -- antenna patterns, gain, reciprocity
+    MIMOChannel.lean                     -- MIMO channel capacity, spatial multiplexing
+
+  Stack/                                 -- Software Stack Derivation
+    ComputationalBoundary.lean           -- crypto primitives, Rice limits, distinguishability
+    KernelCapability.lean                -- OS layer hierarchy, process isolation, capabilities
+    StackDerivation.lean                 -- full derivation from ThereIs to self-hosting stack
 ```
 
 ---
@@ -88,8 +106,11 @@ Formal/
 | 1 -- Sphere | S^2 geometry, geodesics, symmetry, A1-A7 bridge | 24 | 5 | 0 |
 | 2 -- Schwarzschild | Lorentzian signature, metric, Einstein, orbits | 54 | 28 | 0 |
 | Bridge | Kleene topology, Lefschetz density | 5 | 6 | 0 |
-| Derivation | Chain, phases, depth, failure modes, Chomsky, self-application | 109 | 28 | 0 |
-| **Total** | **24 files, 6539 lines** | **208** | **67** | **0** |
+| Derivation | Chain, phases, depth, failure modes, Chomsky, self-application, resonance, intensional shift, self-extracting loop, reception | 166 | 28 | 0 |
+| Network | Empirical bridge, structural resonance | 17 | 8 | 0 |
+| RF | Maxwell, antenna theory, MIMO channels | 28 | 41 | 0 |
+| Stack | Crypto primitives, kernel layers, self-hosting derivation | 44 | 8 | 0 |
+| **Total** | **37 files, 10139 lines** | **354** | **124** | **0** |
 
 ---
 
@@ -105,6 +126,15 @@ Formal/
 - **`ground_state_consistent`** : the seven-axiom system is satisfiable
 - **`isco_at_6M`** : innermost stable circular orbit at r = 6M
 - **`precession_positive`** : perihelion precession is positive for bound orbits
+- **`resonance_chain_propagates`** : computational surplus propagates along resonance chains
+- **`artifact_joint_fixed_point`** : self-extracting artifact is fixed under extraction and bilateral mirror
+- **`reception_witnesses_thereis`** : reception event witnesses the ground "there is"
+- **`hd_shift_is_mdl_instance`** : hyperdimensional shift instantiates MDL compression
+- **`measured_network_has_locality`** : measured network data witnesses ground-state locality
+- **`self_hosting_closure`** : derivation loop closes through Turing-complete self-verification
+- **`semantic_property_has_distinct_witnesses`** : Rice nontriviality implies distinct programs
+- **`crypto_creates_depth_boundary`** : cryptographic hardness creates irreversible depth boundary
+- **`layer_depth_injective`** : OS abstraction layers have unique depths (strict hierarchy)
 
 ---
 
@@ -113,14 +143,19 @@ Formal/
 | Category | Count | Status |
 |----------|------:|--------|
 | Philosophical entailment | 9 | Correctly axiomatized -- irreducibly philosophical |
-| Perspective/depth metric | 11 | Defines the partial order and compression loss |
-| Phase-epistemic diagnostics | 2 | Diagnostic adequacy claims |
+| Perspective/depth metric | 12 | Defines the partial order and compression loss |
+| Phase-invariance / diagnostics | 8 | Phase-invariance propagation and diagnostic adequacy |
 | Church-Turing thesis | 1 | Genuinely informal |
 | Riemannian geometry (Sphere) | 5 | Waiting on Mathlib |
 | Lorentzian geometry (Schwarzschild) | 28 | Waiting on Mathlib |
 | Computable analysis / Lefschetz (Bridge) | 6 | Waiting on Mathlib |
-| Derivation framework | 5 | Phase-invariance propagation |
-| **Total** | **67** | |
+| Empirical bridge (Network) | 8 | Network-to-ground-state witness |
+| Electromagnetic theory (RF) | 41 | Maxwell, antenna, MIMO -- waiting on Mathlib |
+| Cryptographic hardness (Stack) | 3 | SHA-256, AES-256-GCM, Ed25519 -- standard assumptions |
+| Open source / intensional access | 1 | Source availability enables structural examination |
+| Kernel enforcement (Stack) | 2 | Process isolation, syscall-only crossing |
+| Turing completeness / distinguishability | 2 | Lean is Turing-complete, distinguishability monotone |
+| **Total** | **124** | |
 
 Full axiom inventory: [AXIOMS.md](AXIOMS.md)
 
