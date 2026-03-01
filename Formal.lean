@@ -12,3 +12,12 @@ import Formal.Derivation.FailureModes
 import Formal.Derivation.ChomskyMathlib
 import Formal.Derivation.Chomsky
 import Formal.Derivation.SelfApplication
+import Formal.Derivation.Resonance
+import Formal.Derivation.IntensionalShift
+import Formal.Derivation.SelfExtracting
+import Formal.Derivation.Reception
+import Formal.Network.NetworkWitness
+import Formal.Network.NetworkResonance
+import Formal.RF.AntennaTheory
+import Formal.RF.Maxwell
+import Formal.RF.MIMOChannel

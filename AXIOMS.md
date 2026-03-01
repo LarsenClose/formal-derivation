@@ -1,6 +1,6 @@
 # Axiom Inventory
 
-Complete accounting of all 67 axioms in the formalization. Every `axiom` declaration encodes either genuinely philosophical content (no Mathlib correlate possible) or established mathematics absent from Mathlib. No axiom papers over a gap in the derivation's own reasoning.
+Complete accounting of all 76 axioms in the formalization. Every `axiom` declaration encodes either genuinely philosophical content (no Mathlib correlate possible) or established mathematics absent from Mathlib. No axiom papers over a gap in the derivation's own reasoning.
 
 ---
 
@@ -93,6 +93,34 @@ Lorentzian metric type, Christoffel symbols, Riemann/Ricci/scalar curvature, Ein
 
 ---
 
+## Empirical Bridge — Network Witness (9)
+
+Axioms connecting empirical network data (state.json from topology.py)
+to the categorical GroundState axioms. These are the formally structured
+claims that a real network IS a material instantiation of the Beach.
+
+Not philosophical and not Mathlib gaps — a third category: **empirical bridges**.
+The connection from observation to categorical structure cannot be proved in
+pure type theory; it is asserted with empirical conditions made explicit.
+
+| Axiom | File | Content |
+|-------|------|---------|
+| `networkBeachWitness` | Network/NetworkWitness.lean | Given full evidence (all 7 conditions), network satisfies ground state |
+| `groundState_implies_locality` | Network/NetworkWitness.lean | Ground state → A1 (Locality) witness exists |
+| `groundState_implies_closure` | Network/NetworkWitness.lean | Ground state → A2 (Closure) witness exists |
+| `groundState_implies_opacity` | Network/NetworkWitness.lean | Ground state → A3 (Opacity) witness exists |
+| `groundState_implies_fractalBoundary` | Network/NetworkWitness.lean | Ground state → A4 (FractalBoundary) witness exists |
+| `groundState_implies_radiation` | Network/NetworkWitness.lean | Ground state → A5 (Radiation) witness exists |
+| `groundState_implies_circulation` | Network/NetworkWitness.lean | Ground state → A7 (Circulation) witness exists |
+| `resonance_implies_crystal_functor` | Network/NetworkResonance.lean | Structurally resonant networks → functor between crystal categories exists |
+| `NetworkSatisfiesGroundState` | Network/NetworkWitness.lean | Opaque Prop: the empirical ground-state predicate (prevents case analysis) |
+
+The evidence conditions (hasLocality through hasCirculation) are definitions,
+not axioms — they map NetworkStateData fields to Prop predicates. Only the
+implication from evidence to ground state status is axiomatized.
+
+---
+
 ## Proved Without Custom Axioms
 
 For completeness, major results that use only Mathlib:
@@ -109,3 +137,9 @@ For completeness, major results that use only Mathlib:
 - `self_reference_with_return_requires_type0`: Type 0 minimality
 - ISCO at r = 6M, photon sphere ordering, precession positivity
 - Ground state consistency model (Shore/Sea/Gen)
+- `measured_network_has_locality` through `measured_network_has_circulation` (all derived from networkBeachWitness)
+- `resonance_pair_both_ground_states`, `self_resonant_implies_two_ground_states`
+- All `Resonance.lean` theorems: `surplus_positive`, `resonance_propagates`, `resonance_chain_propagates`
+- All `IntensionalShift.lean` theorems: `differential_positive`, `threshold_has_surplus`, `hd_shift_is_mdl_instance`
+- All `SelfExtracting.lean` theorems: `loop_stable_under_iteration`, `artifact_joint_fixed_point`
+- All `Reception.lean` theorems: `presentational_priority`, `reception_witnesses_thereis`, `framework_posterior`, `bilateral_fold_preserves_announcement`

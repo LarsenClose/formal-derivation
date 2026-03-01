@@ -1,0 +1,71 @@
+# Wrangler configuration for the formal-derivation deposit Worker.
+# Replace every TODO marker before deploying.
+
+name = "formal-derivation-worker"
+main = "src/index.ts"
+compatibility_date = "2024-09-23"
+
+# TODO: set to your Cloudflare account ID
+# account_id = "TODO_CLOUDFLARE_ACCOUNT_ID"
+
+# Workers runtime — use the standard bundle (no Node.js compat needed;
+# @noble/ed25519 and @noble/hashes are pure Web-Crypto / Uint8Array).
+[build]
+command = "npm run type-check"
+
+# ---------------------------------------------------------------------------
+# R2 bucket binding
+# ---------------------------------------------------------------------------
+[[r2_buckets]]
+binding = "BUCKET"
+# TODO: replace with your actual R2 bucket name
+bucket_name = "TODO_R2_BUCKET_NAME"
+# TODO: uncomment for production to use the locked bucket
+# bucket_name = "TODO_R2_LOCKED_BUCKET_NAME"
+# preview_bucket_name = "TODO_R2_DEV_BUCKET_NAME"
+
+# ---------------------------------------------------------------------------
+# Queue bindings (async embedding jobs)
+# ---------------------------------------------------------------------------
+[[queues.producers]]
+binding = "EMBED_QUEUE"
+# TODO: replace with your Cloudflare Queue name
+queue = "TODO_EMBED_QUEUE_NAME"
+
+# Queue consumer configuration (deploy separately or in the same worker).
+# [[queues.consumers]]
+# queue = "TODO_EMBED_QUEUE_NAME"
+# max_batch_size = 10
+# max_batch_timeout = 30
+# max_retries = 3
+# dead_letter_queue = "TODO_DLQ_NAME"
+
+# ---------------------------------------------------------------------------
+# Environment variables
+# ---------------------------------------------------------------------------
+[vars]
+# Comma-separated list of authorised depositor Ed25519 public keys (base64).
+# If left empty, the worker accepts deposits from any key.
+# Set to the fingerprint published in CITATION.cff / README.md.
+# TODO: populate with the actual authorised public key.
+SIGNING_KEY_PUBKEY = ""
+
+# ---------------------------------------------------------------------------
+# Environments
+# ---------------------------------------------------------------------------
+[env.production]
+name = "formal-derivation-worker-prod"
+
+[[env.production.r2_buckets]]
+binding = "BUCKET"
+# TODO: replace with your production R2 bucket name
+bucket_name = "TODO_R2_BUCKET_NAME_PROD"
+
+[[env.production.queues.producers]]
+binding = "EMBED_QUEUE"
+# TODO: replace with your production queue name
+queue = "TODO_EMBED_QUEUE_NAME_PROD"
+
+[env.production.vars]
+# TODO: set the authorised public key for production
+SIGNING_KEY_PUBKEY = "TODO_PRODUCTION_PUBKEY_BASE64"
