@@ -4,7 +4,7 @@
 
 Lean 4 formalization of the derivation chain from *Phase-Indexed Epistemology* (Close, 2026).
 
-**Lean 4.28.0 / Mathlib v4.28.0 -- zero sorry -- 124 axioms (documented) -- 354 theorems**
+**Lean 4.28.0 / Mathlib v4.28.0 -- zero sorry -- 114 axioms (documented) -- 361 theorems**
 
 Paper: [Phase-Indexed Epistemology](https://zenodo.org/records/18812866) (DOI: 10.5281/zenodo.18812866)
 
@@ -108,9 +108,9 @@ Formal/
 | Bridge | Kleene topology, Lefschetz density | 5 | 6 | 0 |
 | Derivation | Chain, phases, depth, failure modes, Chomsky, self-application, resonance, intensional shift, self-extracting loop, reception | 166 | 28 | 0 |
 | Network | Empirical bridge, structural resonance | 17 | 8 | 0 |
-| RF | Maxwell, antenna theory, MIMO channels | 28 | 41 | 0 |
-| Stack | Crypto primitives, kernel layers, self-hosting derivation | 44 | 8 | 0 |
-| **Total** | **37 files, 10139 lines** | **354** | **124** | **0** |
+| RF | Maxwell, antenna theory, MIMO channels | 31 | 35 | 0 |
+| Stack | Crypto primitives, kernel layers, self-hosting derivation | 47 | 5 | 0 |
+| **Total** | **37 files, 10153 lines** | **361** | **114** | **0** |
 
 ---
 
@@ -144,18 +144,16 @@ Formal/
 |----------|------:|--------|
 | Philosophical entailment | 9 | Correctly axiomatized -- irreducibly philosophical |
 | Perspective/depth metric | 12 | Defines the partial order and compression loss |
-| Phase-invariance / diagnostics | 8 | Phase-invariance propagation and diagnostic adequacy |
+| Phase-invariance / diagnostics | 5 | Phase-invariance propagation and diagnostic adequacy |
 | Church-Turing thesis | 1 | Genuinely informal |
 | Riemannian geometry (Sphere) | 5 | Waiting on Mathlib |
 | Lorentzian geometry (Schwarzschild) | 28 | Waiting on Mathlib |
 | Computable analysis / Lefschetz (Bridge) | 6 | Waiting on Mathlib |
 | Empirical bridge (Network) | 8 | Network-to-ground-state witness |
-| Electromagnetic theory (RF) | 41 | Maxwell, antenna, MIMO -- waiting on Mathlib |
+| Electromagnetic theory (RF) | 35 | Maxwell, antenna, MIMO -- waiting on Mathlib |
 | Cryptographic hardness (Stack) | 3 | SHA-256, AES-256-GCM, Ed25519 -- standard assumptions |
-| Open source / intensional access | 1 | Source availability enables structural examination |
-| Kernel enforcement (Stack) | 2 | Process isolation, syscall-only crossing |
 | Turing completeness / distinguishability | 2 | Lean is Turing-complete, distinguishability monotone |
-| **Total** | **124** | |
+| **Total** | **114** | |
 
 Full axiom inventory: [AXIOMS.md](AXIOMS.md)
 

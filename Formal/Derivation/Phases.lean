@@ -394,20 +394,18 @@ proved from structural properties alone. They state the relationship between
 phase-indexing and epistemic quality.
 -/
 
-/-- Axiom: A proposition that passes all five diagnostics at developmental
+/-- A proposition that passes all five diagnostics at developmental
     level L2 or above has cross-phase recoverability.
-
-    This captures the claim that systematic phase-tagging (L2+) combined
-    with diagnostic passing ensures the proposition can survive translation.
-    The content is philosophical: it asserts that the diagnostic framework
-    is adequate for detecting phase-dependence. -/
-axiom diagnostic_recoverability {Phase : Type u} [PhaseSpace Phase]
-    (pip : PhaseIndexedProp Phase) (diag : Diagnostic Phase)
-    (h_subject : diag.subject = pip)
+    Proved: `allPass` is a conjunction whose first component is
+    `crossPhaseRecoverable`, so this is just projection. -/
+theorem diagnostic_recoverability {Phase : Type u} [PhaseSpace Phase]
+    (_pip : PhaseIndexedProp Phase) (diag : Diagnostic Phase)
+    (_h_subject : diag.subject = _pip)
     (h_pass : diag.allPass)
-    (level : DevelopmentalLevel)
-    (h_level : DevelopmentalLevel.L2 ≤ level) :
-    diag.crossPhaseRecoverable
+    (_level : DevelopmentalLevel)
+    (_h_level : DevelopmentalLevel.L2 ≤ _level) :
+    diag.crossPhaseRecoverable :=
+  h_pass.1
 
 /-- Axiom: Phase-invariant propositions pass the behavioral coherence
     diagnostic. If validity holds in every phase, consequence chains

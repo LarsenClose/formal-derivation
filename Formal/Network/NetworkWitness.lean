@@ -123,7 +123,8 @@ the axiom. The predicate itself is the conclusion.
 -/
 
 /-- The network, with this state, satisfies the ground state structure.
-    Opaque to prevent case analysis on the construction. -/
+    Opaque to prevent case analysis on the construction and avoid
+    universe-level inference issues with Category-polymorphic existentials. -/
 opaque NetworkSatisfiesGroundState (ns : NetworkStateData) : Prop
 
 /-!

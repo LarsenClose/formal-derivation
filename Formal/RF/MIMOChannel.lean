@@ -26,6 +26,7 @@ import Formal.Derivation.Resonance
 import Mathlib.Data.Matrix.Basic
 import Mathlib.Data.Complex.Basic
 import Mathlib.Analysis.RCLike.Basic
+import Mathlib.LinearAlgebra.Matrix.Rank
 
 namespace RF.MIMOChannel
 
@@ -67,12 +68,16 @@ def applyChannel {N_T N_R : ℕ} (H : ChannelMatrix N_T N_R) (s : TxVector N_T) 
 -/
 
 /-- The rank of a channel matrix (number of independent propagation paths).
-    Axiomatized since complex matrix rank requires additional machinery. -/
-axiom channelRank {N_T N_R : ℕ} (H : ChannelMatrix N_T N_R) : ℕ
+    Defined via Mathlib's Matrix.rank (dimension of column space). -/
+noncomputable def channelRank {N_T N_R : ℕ} (H : ChannelMatrix N_T N_R) : ℕ :=
+  H.rank
 
-/-- The channel rank is bounded by the minimum dimension -/
-axiom channelRank_le_min {N_T N_R : ℕ} (H : ChannelMatrix N_T N_R) :
-    channelRank H ≤ min N_T N_R
+/-- The channel rank is bounded by the minimum dimension.
+    Proved from Mathlib's rank_le_height and rank_le_width. -/
+theorem channelRank_le_min {N_T N_R : ℕ} (H : ChannelMatrix N_T N_R) :
+    channelRank H ≤ min N_T N_R := by
+  unfold channelRank
+  exact le_min (Matrix.rank_le_width H) (Matrix.rank_le_height H)
 
 /-- Singular values of H: a list of nonneg reals of length min(N_T, N_R). -/
 axiom singularValues {N_T N_R : ℕ} (H : ChannelMatrix N_T N_R) :
@@ -330,11 +335,16 @@ axiom channelReciprocity {N_T N_R : ℕ} (ch : MIMOCh N_T N_R) :
     ∀ (i : Fin N_T) (j : Fin N_R), ch_rev.H i j = ch.H j i
 
 /-- Reciprocity preserves rank: rank(H_forward) = rank(H_reverse).
-    Axiomatized: requires matrix rank-transpose theorem for complex matrices. -/
-axiom channelRank_eq_transpose {N_T N_R : ℕ} (ch : MIMOCh N_T N_R)
+    Proved from Mathlib's Matrix.rank_transpose. -/
+theorem channelRank_eq_transpose {N_T N_R : ℕ} (ch : MIMOCh N_T N_R)
     (ch_rev : MIMOCh N_R N_T)
     (hrecip : ∀ (i : Fin N_T) (j : Fin N_R), ch_rev.H i j = ch.H j i) :
-    ch.rank = ch_rev.rank
+    ch.rank = ch_rev.rank := by
+  rw [ch.rank_eq, ch_rev.rank_eq]
+  unfold channelRank
+  have h_transpose : ch_rev.H = ch.H.transpose := by
+    ext i j; exact hrecip i j
+  rw [h_transpose, Matrix.rank_transpose]
 
 /-- The forward and reverse channels have the same number of spatial modes. -/
 theorem reciprocity_preserves_rank {N_T N_R : ℕ} (ch : MIMOCh N_T N_R) :

@@ -44,12 +44,14 @@ abbrev S2Type := { p : E3 // p ∈ S2 }
   We axiomatize the MeasurableSpace and the measure directly.
 -/
 
-/-- MeasurableSpace structure on the S² subtype.
-    Axiomatized because PiLp-based EuclideanSpace does not automatically
-    propagate MeasurableSpace to subtypes in Mathlib v4.28. -/
-axiom s2MeasurableSpace : MeasurableSpace S2Type
+/-- MeasurableSpace on E3 via the Borel sigma-algebra of its topological space.
+    EuclideanSpace ℝ (Fin 3) = WithLp 2 (Fin 3 → ℝ) does not automatically
+    derive MeasurableSpace in Mathlib v4.28, so we construct it via `borel`. -/
+noncomputable instance e3MeasurableSpace : MeasurableSpace E3 := borel E3
 
-attribute [instance] s2MeasurableSpace
+/-- MeasurableSpace on the S² subtype, inherited from E3 via the subtype sigma-algebra. -/
+noncomputable instance s2MeasurableSpace : MeasurableSpace S2Type :=
+  Subtype.instMeasurableSpace
 
 noncomputable section
 
@@ -171,18 +173,18 @@ theorem totalRadiatedPower_nonneg (pat : RadiationPattern) :
     0 ≤ totalRadiatedPower pat :=
   MeasureTheory.integral_nonneg (fun p => Complex.normSq_nonneg (pat.amplitude p))
 
-/-- Directivity axiom: directivity requires normalizing by total radiated power.
-    The directivity in direction p is D(p) = 4π |f(p)|² / P_total.
-    Axiomatized because computing this quotient requires measurability conditions
-    on the pattern amplitude that are not tracked in the simple RadiationPattern type. -/
-axiom directivity (pat : RadiationPattern) (p : S2Type)
-    (hP : totalRadiatedPower pat ≠ 0) : ℝ
+/-- Directivity: normalized power density in direction p.
+    D(p) = 4π |f(p)|² / P_total. -/
+def directivity (pat : RadiationPattern) (p : S2Type)
+    (_hP : totalRadiatedPower pat ≠ 0) : ℝ :=
+  4 * Real.pi * Complex.normSq (pat.amplitude p) / totalRadiatedPower pat
 
-/-- The directivity formula: D(p) = 4π |f(p)|² / ∫ |f|² dΩ -/
-axiom directivity_formula (pat : RadiationPattern) (p : S2Type)
+/-- The directivity formula: D(p) = 4π |f(p)|² / ∫ |f|² dΩ.
+    Now proved by definitional equality. -/
+theorem directivity_formula (pat : RadiationPattern) (p : S2Type)
     (hP : totalRadiatedPower pat ≠ 0) :
     directivity pat p hP =
-    4 * Real.pi * Complex.normSq (pat.amplitude p) / totalRadiatedPower pat
+    4 * Real.pi * Complex.normSq (pat.amplitude p) / totalRadiatedPower pat := rfl
 
 /-- Directivity is nonneg: D(p) ≥ 0 for all p and any nonzero pattern -/
 theorem directivity_nonneg (pat : RadiationPattern) (p : S2Type)

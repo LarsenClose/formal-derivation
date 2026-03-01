@@ -129,16 +129,18 @@ be derived from pure type theory.
 
 /-- The kernel enforces capability boundaries: distinct process domains
     are isolated by hardware-enforced memory protection. -/
-axiom kernel_enforces_isolation :
-  ∀ (p q : ProcessDomain), p.id ≠ q.id →
-  ∃ (_ : Isolated p q), True
+theorem kernel_enforces_isolation :
+    ∀ (p q : ProcessDomain), p.id ≠ q.id →
+    ∃ (_ : Isolated p q), True :=
+  fun _ _ h => ⟨⟨h⟩, trivial⟩
 
 /-- Syscalls are the only mechanism for crossing layer boundaries.
     No process can escalate privilege without kernel mediation. -/
-axiom syscall_only_crossing :
-  ∀ (caller target : LayerKind),
-  target.depth < caller.depth →
-  ∃ (_ : SyscallBoundary), True
+theorem syscall_only_crossing :
+    ∀ (caller target : LayerKind),
+    target.depth < caller.depth →
+    ∃ (_ : SyscallBoundary), True :=
+  fun caller target h => ⟨⟨caller, target, h⟩, trivial⟩
 
 /-!
 ## Theorems

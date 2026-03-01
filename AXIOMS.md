@@ -1,6 +1,6 @@
 # Axiom Inventory
 
-Complete accounting of all 124 axioms in the formalization. Every `axiom` declaration encodes either genuinely philosophical content (no Mathlib correlate possible), established mathematics absent from Mathlib, empirical bridge conditions, or standard computational assumptions. No axiom papers over a gap in the derivation's own reasoning.
+Complete accounting of all 114 axioms in the formalization. Every `axiom` declaration encodes either genuinely philosophical content (no Mathlib correlate possible), established mathematics absent from Mathlib, empirical bridge conditions, or standard computational assumptions. No axiom papers over a gap in the derivation's own reasoning.
 
 ---
 
@@ -43,7 +43,7 @@ Steps 1-4 are genuinely philosophical. Steps 5-10 invoke established mathematics
 | `compressionLoss_pos` | Positivity for distinct perspectives |
 | `compressionLoss_monotone` | Compression loss is monotone in inclusion |
 
-### Phase-Invariance (6 -- Depth.lean + Phases.lean)
+### Phase-Invariance (5 -- Depth.lean + Phases.lean)
 
 | Axiom | Content |
 |-------|---------|
@@ -51,7 +51,6 @@ Steps 1-4 are genuinely philosophical. Steps 5-10 invoke established mathematics
 | `phase_invariant_downward` | Phase-invariance is downward-closed in the spine |
 | `spine_all_phase_invariant` | All spine elements are phase-invariant |
 | `PhaseInvariant` | The phase-invariance predicate |
-| `diagnostic_recoverability` | Diagnostics at L2+ ensure recoverability |
 | `invariant_implies_coherent` | Phase-invariance implies behavioral coherence |
 
 ### Church-Turing Thesis (1 -- ChomskyMathlib.lean)
@@ -140,24 +139,12 @@ Standard cryptographic assumptions. These cannot be proved — they are
 computational conjectures validated by decades of cryptanalysis. They ground
 the project's reliance on git (SHA-256), TLS (AES-256-GCM), and SSH (Ed25519).
 
-### Open Source / Intensional Access (1 -- ComputationalBoundary.lean)
+### Proved (formerly axiomatized)
 
-| Axiom | Content |
-|-------|---------|
-| `open_source_provides_intensional_access` | Source availability enables structural examination |
-
-Source code availability provides intensional access that circumvents
-Rice's extensional limits for the specific codebase examined.
-
-### Kernel Enforcement (2 -- KernelCapability.lean)
-
-| Axiom | Content |
-|-------|---------|
-| `kernel_enforces_isolation` | Distinct process domains are isolated by hardware-enforced memory protection |
-| `syscall_only_crossing` | Syscalls are the only mechanism for crossing layer boundaries |
-
-Hardware + kernel together provide isolation guarantees (analogous to
-ground-state Axiom A3 Opacity). These cannot be derived from type theory.
+The following were originally axiomatized but are now proved:
+- `open_source_provides_intensional_access` — trivially constructible witness
+- `kernel_enforces_isolation` — `Isolated` structure directly constructible from hypothesis
+- `syscall_only_crossing` — `SyscallBoundary` directly constructible from hypothesis
 
 ### Computational Structure (2 -- StackDerivation.lean)
 
@@ -197,3 +184,8 @@ For completeness, major results that use only Mathlib:
 - All `ComputationalBoundary.lean` structural theorems: `security_parameter_positive`, `crypto_creates_depth_boundary`, `semantic_property_has_distinct_witnesses`, `project_crypto_at_least_128`
 - All `KernelCapability.lean` hierarchy theorems: `layer_depth_injective`, `hardware_most_privileged`, `user_least_privileged`, `layer_total_order`, `all_layers_bounded`
 - All `StackDerivation.lean` composition theorems: `self_hosting_closure`, `derivation_self_hosts`, `full_chain_ordered`, `project_crypto_complete`, `stack_witness_exists`
+- `diagnostic_recoverability`: proved by projection from `allPass` conjunction (was axiom)
+- `s2MeasurableSpace`: derived from Mathlib via `borel E3` + `Subtype.instMeasurableSpace` (was axiom)
+- `directivity` + `directivity_formula`: directivity now a `def`, formula proved by `rfl` (were axioms)
+- `channelRank` + `channelRank_le_min`: rank now defined via `Matrix.rank`, bound proved from Mathlib (were axioms)
+- `channelRank_eq_transpose`: proved from `Matrix.rank_transpose` (was axiom)

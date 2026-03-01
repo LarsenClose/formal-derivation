@@ -185,9 +185,10 @@ axiom ed25519_unforgeable :
 /-- Open-source source code provides intensional access to program
     structure, enabling structural analysis that bypasses Rice's
     extensional limits for the specific codebase examined. -/
-axiom open_source_provides_intensional_access :
-  ∀ (sourceLines : ℕ), 0 < sourceLines →
-  ∃ (ie : IntensionalExamination), ie.sourceLines = sourceLines
+theorem open_source_provides_intensional_access :
+    ∀ (sourceLines : ℕ), 0 < sourceLines →
+    ∃ (ie : IntensionalExamination), ie.sourceLines = sourceLines :=
+  fun sourceLines h => ⟨⟨sourceLines, h, 0⟩, rfl⟩
 
 /-!
 ## Theorems
