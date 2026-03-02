@@ -21,6 +21,7 @@ import Formal.Network.NetworkResonance
 import Formal.RF.AntennaTheory
 import Formal.RF.Maxwell
 import Formal.RF.MIMOChannel
+import Formal.RF.Impedance
 import Formal.Stack.ComputationalBoundary
 import Formal.Stack.KernelCapability
 import Formal.Stack.StackDerivation

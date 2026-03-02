@@ -1,6 +1,6 @@
 # Axiom Inventory
 
-Complete accounting of all 114 axioms in the formalization. Every `axiom` declaration encodes either genuinely philosophical content (no Mathlib correlate possible), established mathematics absent from Mathlib, empirical bridge conditions, or standard computational assumptions. No axiom papers over a gap in the derivation's own reasoning.
+Complete accounting of all 117 axioms in the formalization. Every `axiom` declaration encodes either genuinely philosophical content (no Mathlib correlate possible), established mathematics absent from Mathlib, empirical bridge conditions, or standard computational assumptions. No axiom papers over a gap in the derivation's own reasoning.
 
 ---
 
@@ -159,6 +159,22 @@ analogue of compression loss monotonicity from Depth.lean.
 
 ---
 
+## Electromagnetic Theory — Impedance (3 -- Impedance.lean)
+
+| Axiom | Content |
+|-------|---------|
+| `freeSpaceImpedance` | The impedance of free space Z_0 (carrier value ~377 ohms) |
+| `freeSpaceImpedance_pos` | Z_0 > 0 (positivity of free-space impedance) |
+| `antennaImpedanceExists` | Every RadiationPattern has a feed-point impedance |
+
+Free-space impedance is a fundamental electromagnetic constant (sqrt(mu_0/epsilon_0)).
+Antenna impedance existence is a physics axiom: the radiation pattern determines
+the feed impedance via the induced EMF method. All 16 theorems in the module
+(reflection coefficient bounds, VSWR, quarter-wave matching, Friis mismatch)
+are proved from these axioms and Mathlib complex arithmetic.
+
+---
+
 ## Proved Without Custom Axioms
 
 For completeness, major results that use only Mathlib:
@@ -189,3 +205,4 @@ For completeness, major results that use only Mathlib:
 - `directivity` + `directivity_formula`: directivity now a `def`, formula proved by `rfl` (were axioms)
 - `channelRank` + `channelRank_le_min`: rank now defined via `Matrix.rank`, bound proved from Mathlib (were axioms)
 - `channelRank_eq_transpose`: proved from `Matrix.rank_transpose` (was axiom)
+- All `Impedance.lean` theorems: `power_conservation`, `real_positive_reflection_bounded`, `vswr_ge_one`, `matched_power_le_ideal`, `quarter_wave_matches`, `total_reflection_short_circuit`

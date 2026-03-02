@@ -4,7 +4,7 @@
 
 Lean 4 formalization of the derivation chain from *Phase-Indexed Epistemology* (Close, 2026).
 
-**Lean 4.28.0 / Mathlib v4.28.0 -- zero sorry -- 114 axioms (documented) -- 361 theorems**
+**Lean 4.28.0 / Mathlib v4.28.0 -- zero sorry -- 117 axioms (documented) -- 377 theorems**
 
 Paper: [Phase-Indexed Epistemology](https://zenodo.org/records/18812866) (DOI: 10.5281/zenodo.18812866)
 
@@ -89,6 +89,7 @@ Formal/
     Maxwell.lean                         -- Maxwell equations, wave propagation
     AntennaTheory.lean                   -- antenna patterns, gain, reciprocity
     MIMOChannel.lean                     -- MIMO channel capacity, spatial multiplexing
+    Impedance.lean                       -- impedance matching, reflection, VSWR, Friis mismatch
 
   Stack/                                 -- Software Stack Derivation
     ComputationalBoundary.lean           -- crypto primitives, Rice limits, distinguishability
@@ -108,9 +109,9 @@ Formal/
 | Bridge | Kleene topology, Lefschetz density | 5 | 6 | 0 |
 | Derivation | Chain, phases, depth, failure modes, Chomsky, self-application, resonance, intensional shift, self-extracting loop, reception | 166 | 28 | 0 |
 | Network | Empirical bridge, structural resonance | 17 | 8 | 0 |
-| RF | Maxwell, antenna theory, MIMO channels | 31 | 35 | 0 |
+| RF | Maxwell, antenna theory, MIMO channels, impedance | 47 | 38 | 0 |
 | Stack | Crypto primitives, kernel layers, self-hosting derivation | 47 | 5 | 0 |
-| **Total** | **37 files, 10153 lines** | **361** | **114** | **0** |
+| **Total** | **38 files, 10392 lines** | **377** | **117** | **0** |
 
 ---
 
@@ -135,6 +136,8 @@ Formal/
 - **`semantic_property_has_distinct_witnesses`** : Rice nontriviality implies distinct programs
 - **`crypto_creates_depth_boundary`** : cryptographic hardness creates irreversible depth boundary
 - **`layer_depth_injective`** : OS abstraction layers have unique depths (strict hierarchy)
+- **`real_positive_reflection_bounded`** : for real positive impedances, |Gamma|^2 <= 1
+- **`matched_power_le_ideal`** : impedance mismatch reduces received power below ideal Friis
 
 ---
 
@@ -150,10 +153,10 @@ Formal/
 | Lorentzian geometry (Schwarzschild) | 28 | Waiting on Mathlib |
 | Computable analysis / Lefschetz (Bridge) | 6 | Waiting on Mathlib |
 | Empirical bridge (Network) | 8 | Network-to-ground-state witness |
-| Electromagnetic theory (RF) | 35 | Maxwell, antenna, MIMO -- waiting on Mathlib |
+| Electromagnetic theory (RF) | 38 | Maxwell, antenna, MIMO, impedance -- waiting on Mathlib |
 | Cryptographic hardness (Stack) | 3 | SHA-256, AES-256-GCM, Ed25519 -- standard assumptions |
 | Turing completeness / distinguishability | 2 | Lean is Turing-complete, distinguishability monotone |
-| **Total** | **114** | |
+| **Total** | **117** | |
 
 Full axiom inventory: [AXIOMS.md](AXIOMS.md)
 
